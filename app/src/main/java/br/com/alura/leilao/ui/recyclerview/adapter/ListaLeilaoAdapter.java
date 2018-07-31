@@ -53,6 +53,10 @@ public class ListaLeilaoAdapter extends RecyclerView.Adapter<ListaLeilaoAdapter.
     public void atualiza(List<Leilao> leiloes) {
         this.leiloes.clear();
         this.leiloes.addAll(leiloes);
+        atualizaLista();
+    }
+
+    public void atualizaLista() {
         notifyDataSetChanged();
     }
 
