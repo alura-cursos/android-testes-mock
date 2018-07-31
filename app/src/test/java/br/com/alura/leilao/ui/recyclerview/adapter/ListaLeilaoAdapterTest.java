@@ -28,7 +28,12 @@ import android.support.annotation.Nullable;
 import android.view.Display;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
+import org.mockito.Spy;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -43,14 +48,20 @@ import br.com.alura.leilao.model.Leilao;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.verify;
 
+@RunWith(MockitoJUnitRunner.class)
 public class ListaLeilaoAdapterTest {
+
+    @Mock
+    private Context context;
+    @Spy
+    private ListaLeilaoAdapter adapter = new ListaLeilaoAdapter(context);
 
     @Test
     public void deve_AtualizarListaDeLeiloes_QuandoReceberListaDeLeiloes(){
-        Context context = Mockito.mock(Context.class);
-        ListaLeilaoAdapter adapter = Mockito.spy(new ListaLeilaoAdapter(context));
-        Mockito.doNothing().when(adapter).atualizaLista();
+        doNothing().when(adapter).atualizaLista();
 
         adapter.atualiza(new ArrayList<>(Arrays.asList(
                 new Leilao("Console"),
@@ -58,7 +69,7 @@ public class ListaLeilaoAdapterTest {
         )));
         int quantidadeLeiloesDevolvida = adapter.getItemCount();
 
-        Mockito.verify(adapter).atualizaLista();
+        verify(adapter).atualizaLista();
         assertThat(quantidadeLeiloesDevolvida, is(2));
     }
 
