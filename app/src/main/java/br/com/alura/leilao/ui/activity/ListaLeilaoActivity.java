@@ -66,10 +66,10 @@ public class ListaLeilaoActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        buscaLeiloes(adapter);
+        buscaLeiloes(adapter, client);
     }
 
-    public void buscaLeiloes(final ListaLeilaoAdapter adapter) {
+    public void buscaLeiloes(final ListaLeilaoAdapter adapter, LeilaoWebClient client) {
         client.todos(new RespostaListener<List<Leilao>>() {
             @Override
             public void sucesso(List<Leilao> leiloes) {
