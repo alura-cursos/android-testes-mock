@@ -98,4 +98,21 @@ public class Leilao implements Serializable {
         return id;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Leilao leilao = (Leilao) o;
+
+        if (id != leilao.id) return false;
+        return descricao != null ? descricao.equals(leilao.descricao) : leilao.descricao == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = (int) (id ^ (id >>> 32));
+        result = 31 * result + (descricao != null ? descricao.hashCode() : 0);
+        return result;
+    }
 }
