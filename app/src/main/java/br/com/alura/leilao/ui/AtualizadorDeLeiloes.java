@@ -1,8 +1,5 @@
 package br.com.alura.leilao.ui;
 
-import android.content.Context;
-import android.widget.Toast;
-
 import java.util.List;
 
 import br.com.alura.leilao.api.retrofit.client.LeilaoWebClient;

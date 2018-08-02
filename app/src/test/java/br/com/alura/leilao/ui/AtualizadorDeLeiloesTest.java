@@ -1,11 +1,8 @@
 package br.com.alura.leilao.ui;
 
-import android.content.Context;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.mockito.stubbing.Answer;
@@ -17,14 +14,11 @@ import java.util.List;
 import br.com.alura.leilao.api.retrofit.client.LeilaoWebClient;
 import br.com.alura.leilao.api.retrofit.client.RespostaListener;
 import br.com.alura.leilao.model.Leilao;
-import br.com.alura.leilao.ui.activity.ListaLeilaoActivity;
 import br.com.alura.leilao.ui.recyclerview.adapter.ListaLeilaoAdapter;
 
-import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.doAnswer;
-import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -34,8 +28,6 @@ public class AtualizadorDeLeiloesTest {
     private ListaLeilaoAdapter adapter;
     @Mock
     private LeilaoWebClient client;
-    @Mock
-    private Context context;
     @Mock
     private AtualizadorDeLeiloes.ErroCarregaLeiloesListener listener;
 
