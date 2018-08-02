@@ -14,6 +14,7 @@ import br.com.alura.leilao.R;
 import br.com.alura.leilao.api.retrofit.client.LeilaoWebClient;
 import br.com.alura.leilao.api.retrofit.client.RespostaListener;
 import br.com.alura.leilao.model.Leilao;
+import br.com.alura.leilao.ui.AtualizadorDeLeiloes;
 import br.com.alura.leilao.ui.recyclerview.adapter.ListaLeilaoAdapter;
 
 import static br.com.alura.leilao.ui.activity.LeilaoConstantes.CHAVE_LEILAO;
@@ -22,9 +23,10 @@ import static br.com.alura.leilao.ui.activity.LeilaoConstantes.CHAVE_LEILAO;
 public class ListaLeilaoActivity extends AppCompatActivity {
 
     private static final String TITULO_APPBAR = "Leilões";
-    private static final String MENSAGEM_AVISO_FALHA_AO_CARREGAR_LEILOES = "Não foi possível carregar os leilões";
     private final LeilaoWebClient client = new LeilaoWebClient();
+    private final AtualizadorDeLeiloes atualizadorDeLeiloes = new AtualizadorDeLeiloes();
     private ListaLeilaoAdapter adapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,23 +68,7 @@ public class ListaLeilaoActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        buscaLeiloes(adapter, client);
-    }
-
-    public void buscaLeiloes(final ListaLeilaoAdapter adapter, LeilaoWebClient client) {
-        client.todos(new RespostaListener<List<Leilao>>() {
-            @Override
-            public void sucesso(List<Leilao> leiloes) {
-                adapter.atualiza(leiloes);
-            }
-
-            @Override
-            public void falha(String mensagem) {
-                Toast.makeText(ListaLeilaoActivity.this,
-                        MENSAGEM_AVISO_FALHA_AO_CARREGAR_LEILOES,
-                        Toast.LENGTH_SHORT).show();
-            }
-        });
+        atualizadorDeLeiloes.buscaLeiloes(adapter, client, this);
     }
 
     @Override
