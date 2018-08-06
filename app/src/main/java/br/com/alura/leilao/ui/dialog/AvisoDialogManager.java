@@ -24,7 +24,7 @@ public class AvisoDialogManager {
         mostraDialog(context, MENSAGEM_AVISO_LANCE_SEGUIDO_MESMO_USUARIO);
     }
 
-    public static void mostraAvisoLanceMenorQueUltimoLance(Context context) {
+    public void mostraAvisoLanceMenorQueUltimoLance(Context context) {
         mostraDialog(context, MENSAGEM_AVISO_LANCE_MENOR_QUE_ULTIMO_LANCE);
     }
 
