@@ -16,7 +16,7 @@ public class AvisoDialogManager {
         mostraDialog(context, MENSAGEM_AVISO_FALHA_NO_ENVIO_DO_LANCE);
     }
 
-    public static void mostraAvisoUsuarioJaDeuCincoLances(Context context) {
+    public void mostraAvisoUsuarioJaDeuCincoLances(Context context) {
         mostraDialog(context, MENSAGEM_AVISO_JA_DEU_CINCO_LANCES);
     }
 
