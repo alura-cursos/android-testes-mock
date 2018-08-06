@@ -13,6 +13,8 @@ import br.com.alura.leilao.model.Usuario;
 import br.com.alura.leilao.ui.recyclerview.adapter.ListaUsuarioAdapter;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class AtualizadorDeUsuarioTest {
@@ -30,13 +32,15 @@ public class AtualizadorDeUsuarioTest {
                 dao,
                 adapter,
                 recyclerView);
-
         Usuario alex = new Usuario("Alex");
+        when(dao.salva(alex)).thenReturn(new Usuario(1, "Alex"));
+        when(adapter.getItemCount()).thenReturn(1);
+
         atualizador.salva(alex);
 
-        Mockito.verify(dao).salva(alex);
-        Mockito.verify(adapter).adiciona(alex);
-        Mockito.verify(recyclerView).smoothScrollToPosition(adapter.getItemCount() - 1);
+        verify(dao).salva(new Usuario("Alex"));
+        verify(adapter).adiciona(new Usuario(1, "Alex"));
+        verify(recyclerView).smoothScrollToPosition(0);
     }
 
 }
